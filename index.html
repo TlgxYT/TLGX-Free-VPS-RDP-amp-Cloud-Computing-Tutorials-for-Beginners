@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TLGX - Free VPS & Tech Tutorials</title>
+  <meta name="description" content="Get free VPS, RDP, and tech tutorials with step-by-step guides.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0d0d0d;
+      color: white;
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      background: black;
+      border-bottom: 2px solid red;
+    }
+    h1 { color: red; }
+
+    .container {
+      padding: 20px;
+    }
+
+    .post {
+      background: #1a1a1a;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+    }
+
+    .post a {
+      color: red;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: red;
+      color: white;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>TLGX</h1>
+  <p>Free VPS • RDP • Tech Tutorials</p>
+</header>
+
+<div class="container">
+  <h2>Latest Tutorials</h2>
+  <div id="posts"></div>
+</div>
+
+<script>
+fetch('posts.json')
+.then(res => res.json())
+.then(data => {
+  let output = '';
+  data.reverse().forEach(post => {
+    output += `
+      <div class="post">
+        <h3>${post.title}</h3>
+        <p>${post.desc}</p>
+        <a class="btn" href="${post.link}">Read More →</a>
+      </div>
+    `;
+  });
+  document.getElementById('posts').innerHTML = output;
+});
+</script>
+
+</body>
+</html>
